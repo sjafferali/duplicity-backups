@@ -9,6 +9,10 @@ CONTAINER=$(uname -n)
 BACKUP_PATH="/"
 RESTORE_PATH="/opt/smods/dupbackup/restoredir"
 EXCLUDE="--exclude /proc --exclude /dev --exclude /sys --exclude /tmp --exclude /run --exclude /mnt --exclude /media --exclude /lost+found --exclude /var/mysqltmp --exclude /var/tmp"
+if [[ -f "/opt/smods/dupbackup/.exclude" ]]
+then
+	EXCLUDE="$EXCLUDE --exclude-filelist /opt/smods/dupbackup/.exclude"
+fi
 FULL_LOG_FILE="/opt/smods/dupbackup/logs/full_log"
 SUMM_LOG_FILE="/opt/smods/dupbackup/logs/summ_log"
 LAST_FULL="/opt/smods/dupbackup/logs/last_full"
